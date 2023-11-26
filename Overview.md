@@ -43,12 +43,11 @@ Character Operations
 * Equipping/Unequipping Shield: เหมือนกับของ Sword
 * attack() : double - return ค่า atk
 * beAttack(double) : void - รับค่า damage และทำการคำนวณ hp ใหม่ที่ทำการหักกับ shield แล้ว (ถ้ามี)
-* ShowStat() : void - ทำการ show stat (Lv,hp,mana,Lv of sword and shield).
+
 
 Sword and Shield Operations
 * levelUp(): void - This method in both the Sword and Shield classes that can leveling up your equipment.
-* getLevel: int - return lv of sword/shield.
-* getBaseDamage/Shield : int - return base damage/shield.
+
 
 ## 3. How and Where to Compute Information
 ```java
@@ -75,16 +74,18 @@ public class RPG_character {
 public class Sword {
 // ... Other fields and methods ...
 
-    public double getSwordDamage() {
-        // Calculation involving the sword's damage
+    public void LevelUp(){ //ตำนวณเพิ่มค่า damage ตาม level จากสูตรที่ให้มา
+        Level += 1;
+        SwordDamage = BaseDamage*(1+0.1*Level);
     }
 }
 
 public class Shield {
 // ... Other fields and methods ...
 
-    public double getShieldDefense() {
-        // Calculation involving the shield's defense
+    public void Levelup(){ //ตำนวณเพิ่มค่า Defense ตาม level จากสูตรที่ให้มา
+        Level++;
+        ShieldDefense = BaseDefense*(1+0.05*Level);
     }
 }
 ```
