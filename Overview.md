@@ -10,7 +10,7 @@ public class RPG_character {
     private int level;
     private double health;
     private double mana;
-    // Other attributes...
+    // Other fields
 
     // Constructor and methods...
 }
@@ -36,3 +36,55 @@ public class Shield {
 ```
 
 ## 2. What Operations are Needed
+
+Character Operations
+* Level Up() : void - ตัวละครจะมีการ level up ขึ้นได้ โดย LevelUp method in the RPG_character class.
+* Equipping/Unequipping Sword: ตัวละครสามารถ ถอด/ใส่ ของ โดย Equip/UnEquip methods in the RPG_character class.
+* Equipping/Unequipping Shield: เหมือนกับของ Sword
+* attack() : double - return ค่า atk
+* beAttack(double) : void - รับค่า damage และทำการคำนวณ hp ใหม่ที่ทำการหักกับ shield แล้ว (ถ้ามี)
+* ShowStat() : void - ทำการ show stat (Lv,hp,mana,Lv of sword and shield).
+
+Sword and Shield Operations
+* levelUp(): void - This method in both the Sword and Shield classes that can leveling up your equipment.
+* getLevel: int - return lv of sword/shield.
+* getBaseDamage/Shield : int - return base damage/shield.
+
+## 3. How and Where to Compute Information
+```java
+public class RPG_character {
+// ... Other fields and methods ...
+
+    public double attack() {
+        // คำนวณตอนมี Sword จะทำการนำ (Sword's attack power) + (Character's attack power)
+        // ถ้ายังไม่มี Sword ก็ return Character's attack power
+    }
+
+    public void beAttacked(double damage) {
+        /* 
+        ถ้าตอนมี Shield และมีค่ามากกว่า damage ที่ได้รับก็จะให้ไม่ได้รับความเสียหายเลย 
+        แต่ถ้ามี Shield น้อยกว่า จะทำให้ได้รับความเสียหายและ hp เหลือ hp - damage-shieldDefense (0 is lowest hp)
+        
+        ถัาตอนไม่มี Shield ก็โดนเต๋็ม hp เหลือ hp-damage (0 is lowest hp)
+         
+         */
+    }
+}
+```
+```java
+public class Sword {
+// ... Other fields and methods ...
+
+    public double getSwordDamage() {
+        // Calculation involving the sword's damage
+    }
+}
+
+public class Shield {
+// ... Other fields and methods ...
+
+    public double getShieldDefense() {
+        // Calculation involving the shield's defense
+    }
+}
+```
